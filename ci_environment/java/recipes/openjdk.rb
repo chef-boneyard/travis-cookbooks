@@ -31,7 +31,7 @@ execute "update-java-alternatives" do
                 when ["ubuntu", "11.10"] then
                   "java-1.6.0-openjdk"
                 else
-                  "java-1.6.0-openjdk"
+                  "java-6-openjdk"
                 end
 
   command "update-java-alternatives -s #{alternative}"
