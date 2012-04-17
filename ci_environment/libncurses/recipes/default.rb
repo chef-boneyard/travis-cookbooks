@@ -21,11 +21,15 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-package "libncursesw5-dev"
+pkgs = value_for_platform(
+  ["centos","redhat","fedora"] => {
+    "default" => ["ncurses-devel"]
+  },
+  "default" => ["libncursesw5-dev","libncurses5-dev"]
+)
 
-case node['platform']
-when "ubuntu","debian"
-  %w{libncurses5-dev}.each do |pkg|
-    package(pkg) { action :install }
-  end # each
-end # case
+pkgs.each do |pkg|
+  package pkg do
+    action :install
+  end
+end
