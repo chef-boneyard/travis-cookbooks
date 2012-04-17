@@ -63,4 +63,12 @@ when "debian", "ubuntu"
       not_if "which git"
     end
   end # each
+when "centos","redhat","scientific","fedora"
+  case node[:platform_version].to_i
+  when 5
+    include_recipe "yum::epel"
+  end
+  package "git"
+else
+  package "git"
 end # case
